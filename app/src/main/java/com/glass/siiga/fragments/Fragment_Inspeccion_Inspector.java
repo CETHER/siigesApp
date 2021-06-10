@@ -85,7 +85,7 @@ public class Fragment_Inspeccion_Inspector extends Fragment{
         parametros.put("webService","inspeccionesInspector");
         parametros.put("persona_id", persona_id);
 
-        jsonObjRecibido = conectar.enviarParametros(url, parametros, getActivity());
+        jsonObjRecibido = conectar.enviarParametros(url, parametros);
         return jsonObjRecibido;
     }
 

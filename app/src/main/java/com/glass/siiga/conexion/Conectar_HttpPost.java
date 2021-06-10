@@ -1,6 +1,5 @@
 package com.glass.siiga.conexion;
 
-import android.app.Activity;
 import android.os.StrictMode;
 import android.util.Log;
 
@@ -17,7 +16,6 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -42,13 +40,13 @@ public class Conectar_HttpPost {
     JSONObject jsonRespuesta;
     Conectar_HttpsPost conectar;
 
-    public JSONObject enviarParametros(String url, HashMap<String, String> listado, Activity context){
+    public JSONObject enviarParametros(String url, HashMap<String, String> listado){
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         this.url = url;
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("https://siiges/controllers/"+url);
+        HttpPost httppost = new HttpPost("https://siiges.com/controllers/"+url);
 
         try {
             List<NameValuePair> nameValuePairs = new ArrayList<>();

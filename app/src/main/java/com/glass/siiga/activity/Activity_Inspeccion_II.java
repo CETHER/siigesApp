@@ -190,7 +190,7 @@ public class Activity_Inspeccion_II extends FragmentActivity {
             parametros.put("nuevo_estatus", "3");
         }
 
-        jsonObjRecibido = conectar.enviarParametros(url, parametros, Activity_Inspeccion_II.this);
+        jsonObjRecibido = conectar.enviarParametros(url, parametros);
 
         return jsonObjRecibido;
     }

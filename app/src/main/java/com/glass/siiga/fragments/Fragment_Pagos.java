@@ -125,7 +125,7 @@ public class Fragment_Pagos extends Fragment {
                 break;
         }
 
-        jsonObjRecibido = conectar.enviarParametros(url, parametros, getActivity());
+        jsonObjRecibido = conectar.enviarParametros(url, parametros);
 
         return jsonObjRecibido;
     }

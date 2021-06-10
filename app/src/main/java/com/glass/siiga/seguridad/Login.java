@@ -3,17 +3,24 @@ package com.glass.siiga.seguridad;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -43,13 +50,20 @@ public class Login extends Activity {
     private String titulo, mensaje, usuario_id, persona_id, rol_id;
     private int status;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setTheme(R.style.MyNoActionBarShadowTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // set status bar color as blue
+        Window window = Login.this.getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(getResources().getColor( R.color.rojoDebil));
 
         etUsuarioLogin = (EditText) findViewById(R.id.etUsuarioLogin);
         etPassLogin = (EditText) findViewById(R.id.etPassLogin);
@@ -88,13 +102,14 @@ public class Login extends Activity {
         parametros.put("usuario",""+etUsuarioLogin.getText().toString());
         parametros.put("contrasena",""+etPassLogin.getText().toString());
 
-        jsonObjRecibido = conectar.enviarParametros(url, parametros, Login.this);
+        jsonObjRecibido = conectar.enviarParametros(url, parametros);
         return jsonObjRecibido;
     }
 
     public void validarRespuesta(){
         JSONObject jsonRecibido = enviarDatos();
         System.out.println("Testing response " + jsonRecibido);
+
         try {
             if(jsonRecibido.getInt("status") == 200){
                 status = 200;
@@ -179,7 +194,7 @@ public class Login extends Activity {
         parametros_token.put("id",""+usuario_id);
         parametros_token.put("token_notificaciones",""+prefs.getString("token","0"));
 
-        conectar.enviarParametros(url_token, parametros_token, Login.this);
+        conectar.enviarParametros(url_token, parametros_token);
     }
 
 
@@ -247,5 +262,14 @@ public class Login extends Activity {
             }
 
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 }

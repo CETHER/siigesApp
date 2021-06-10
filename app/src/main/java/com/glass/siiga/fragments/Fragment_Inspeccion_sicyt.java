@@ -107,7 +107,7 @@ public class Fragment_Inspeccion_sicyt extends Fragment {
                 break;
         }
 
-        jsonObjRecibido = conectar.enviarParametros(url, parametros, getActivity());
+        jsonObjRecibido = conectar.enviarParametros(url, parametros);
 
         return jsonObjRecibido;
     }

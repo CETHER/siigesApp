@@ -93,7 +93,7 @@ public class Fragment_Noticias extends Fragment {
         HashMap<String, String> parametros = new HashMap<>();
         parametros.put("webService","consultarTodos");
 
-        jsonObjRecibido = conectar.enviarParametros(url, parametros, getActivity());
+        jsonObjRecibido = conectar.enviarParametros(url, parametros);
         return jsonObjRecibido;
     }
 

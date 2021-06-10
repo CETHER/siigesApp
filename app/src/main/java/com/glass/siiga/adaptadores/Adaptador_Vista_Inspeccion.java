@@ -285,14 +285,14 @@ public class Adaptador_Vista_Inspeccion extends RecyclerView.Adapter<Adaptador_V
                     parametros.put("webService","guardarInspeccion");
                     parametros.put("datos", j.toString());
 
-                    jsonObjRecibido = conectar.enviarParametros(url, parametros, activity);
+                    jsonObjRecibido = conectar.enviarParametros(url, parametros);
                     break;
                 case 1:
                     parametros.put("webService","actualizarEstatus");
                     parametros.put("id", inspeccion.getId_inspeccion());
                     parametros.put("nuevo_estatus", "5"); //Status En Proceso = 2
 
-                    jsonObjRecibido = conectar.enviarParametros(url, parametros, activity);
+                    jsonObjRecibido = conectar.enviarParametros(url, parametros);
                     break;
             }
 

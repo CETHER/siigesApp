@@ -29,10 +29,10 @@ public class ServicioFirebaseID extends FirebaseInstanceIdService {
     }
 
     private void sendRegistrationToServer(String token_nuevo) {
-        actualizar_token(token_nuevo);
+        updateToken(token_nuevo);
     }
 
-    public void actualizar_token(String token_nuevo){
+    public void updateToken(String token_nuevo){
         String url_actualizar_token = "control-usuario.php";
         HashMap<String, String> parametros_autenticacion = new HashMap<>();
 
@@ -44,14 +44,13 @@ public class ServicioFirebaseID extends FirebaseInstanceIdService {
         parametros_autenticacion.put("token_notificaciones", token_nuevo);
 
         Conectar_HttpPost conectar = new Conectar_HttpPost();
-        Activity activity = (Activity) getApplicationContext();
-        JSONObject jsonObject = conectar.enviarParametros(url_actualizar_token, parametros_autenticacion, activity);
+        JSONObject jsonObject = conectar.enviarParametros(url_actualizar_token, parametros_autenticacion);
 
         try {
             if(jsonObject.getInt("status") == 200){
                 SharedPreferences.Editor editor = getSharedPreferences("SIIGA_BD", MODE_PRIVATE).edit();
                 editor.putString("token", ""+token_nuevo);
-                editor.commit();
+                editor.apply();
             }
         } catch (JSONException e) {
             e.printStackTrace();

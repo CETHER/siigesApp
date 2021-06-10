@@ -117,7 +117,7 @@ public class Fragment_Notificaciones extends Fragment {
             parametros.put("id",""+id_notificacion);
         }
 
-        jsonObjRecibido = conectar.enviarParametros(url, parametros, getActivity());
+        jsonObjRecibido = conectar.enviarParametros(url, parametros);
         return jsonObjRecibido;
     }
 

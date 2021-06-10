@@ -109,7 +109,7 @@ public class Fragment_Perfil extends Fragment{
         parametros.put("usuario",""+usuario);
         parametros.put("contrasena",""+contrasena);
 
-        jsonObjRecibido = conectar.enviarParametros(url, parametros, getActivity());
+        jsonObjRecibido = conectar.enviarParametros(url, parametros);
         return jsonObjRecibido;
     }
 

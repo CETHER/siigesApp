@@ -223,7 +223,7 @@ public class Activity_Inspeccion_I extends FragmentActivity {
                 break;
         }
 
-        jsonObjRecibido = conectar.enviarParametros(url, parametros, Activity_Inspeccion_I.this);
+        jsonObjRecibido = conectar.enviarParametros(url, parametros);
         return jsonObjRecibido;
     }
 

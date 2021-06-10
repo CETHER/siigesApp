@@ -353,7 +353,7 @@ public class Activity_Main extends FragmentActivity {
                                                 parametros.put("id", lista_inspecciones.get(k));
                                                 parametros.put("nuevo_estatus", "1"); //Status En Proceso = 2
 
-                                                conectar.enviarParametros(url, parametros, Activity_Main.this);
+                                                conectar.enviarParametros(url, parametros);
                                             }
 
                                             new tareaDesligarToken().execute();
@@ -427,7 +427,7 @@ public class Activity_Main extends FragmentActivity {
         parametros_token.put("id", usuario_id);
         parametros_token.put("token_notificaciones","-1");
 
-        jsonObject = conectar.enviarParametros(url_token, parametros_token, Activity_Main.this);
+        jsonObject = conectar.enviarParametros(url_token, parametros_token);
 
         return  jsonObject;
 
@@ -526,7 +526,7 @@ public class Activity_Main extends FragmentActivity {
                 parametros.put("webService","guardarInspeccion");
                 parametros.put("datos", jsonObject.toString());
 
-                conectar.enviarParametros(url, parametros, Activity_Main.this);
+                conectar.enviarParametros(url, parametros);
             }
             return true;
         }
